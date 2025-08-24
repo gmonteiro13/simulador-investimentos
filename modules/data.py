@@ -3,12 +3,17 @@ import yfinance as yf
 
 def fetch_data(tickers, start_date, end_date):
 
-    data = yf.download(tickers, start=start_date, end=end_date)
+    data = yf.download(
+        tickers, start=start_date, end=end_date, progress=False
+    )
     
     if len(tickers) == 1:
         price_data = data[['Close']]
+        price_data.columns = tickers # renomear a coluna para o nome do ticker
     else:
         price_data = data[['Close']]
+        
+    price_data = price_data.ffill().bfill() # trata dados ausentes
     return price_data
 
 if __name__ == "__main__":
