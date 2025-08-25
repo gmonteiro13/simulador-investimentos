@@ -1,14 +1,15 @@
 import argparse
 import sys
-from data import fetch_data
-from interest import simulate_compound_interest
-from portfolio import simulate_portfolio
-from metrics import calculate_all_metrics
-from report import (generate_comparison_plot,
-                    generate_drawdown_plot,
-                    generate_report_table)
 
 sys.path.append('modules')
+
+from data import fetch_data  # noqa: E402
+from interest import simulate_compound_interest  # noqa: E402
+from portfolio import simulate_portfolio  # noqa: E402
+from metrics import calculate_all_metrics  # noqa: E402
+from report import (generate_comparison_plot,  # noqa: E402
+                    generate_drawdown_plot,
+                    generate_report_table)
 
 
 def main():
