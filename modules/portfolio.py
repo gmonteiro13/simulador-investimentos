@@ -10,11 +10,25 @@ def _normalize_weights(weights: List[float]) -> np.ndarray:
 
 
 def simulate_portfolio(
-    price_data,
-    initial_capital,
-    monthly_contribution,
-    weights
-):
+    price_data: pd.DataFrame,
+    initial_capital: float,
+    monthly_contribution: float,
+    weights: List[float]
+) -> pd.Series:
+    """
+    Simula a evolução de uma carteira de ações com aportes mensais.
+
+    Args:
+        price_data (pd.DataFrame): DataFrame com os\
+            preços históricos dos ativos.
+        capital_inicial (float): O valor inicial do investimento.
+        aporte_mensal (float): O valor aportado no início de cada mês.
+        weights (List[float]): Lista com os pesos de cada ativo na carteira.
+
+    Returns:
+        pd.Series: Uma série com o valor do portfólio\
+            para cada dia na simulação.
+    """
 
     weights = _normalize_weights(weights)
 

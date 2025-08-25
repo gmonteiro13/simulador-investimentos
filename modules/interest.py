@@ -9,6 +9,20 @@ def simulate_compound_interest(
 ) -> pd.Series:
     """
     Simula a evolução de um capital com juros compostos e aportes mensais.
+
+    Args:
+        capital_inicial (float):\
+            O valor inicial do investimento.
+        aporte_mensal (float):\
+            O valor aportado no início de cada mês.
+        taxa_juros_mensal (float):\
+            A taxa de juros mensal em porcentagem (ex: 0.8 para 0.8%).
+        dates (pd.DatetimeIndex):\
+            O índice de datas para a simulação.
+
+    Returns:
+        pd.Series: Uma série com o valor do patrimônio \
+            para cada dia na simulação.
     """
     taxa_mensal_decimal = taxa_juros_mensal / 100.0
     results = pd.Series(0.0, index=dates)
