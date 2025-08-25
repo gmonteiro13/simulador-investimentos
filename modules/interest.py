@@ -3,12 +3,15 @@ import pandas as pd
 def simulate_compound_interest(initial_capital,
                                monthly_contribution,
                                monthly_interest_rate,
-                               start_date,
-                               end_date):
+                               price_data):
     
     # bdate retorna o número de dias úteis para um período de tempo
+    start_date = price_data.min()
+    end_date = price_data.max()
+
+    # Gera uma série de datas úteis dentro do intervalo
     dates = pd.bdate_range(start=start_date, end=end_date)
-    
+
     # Converte a taxa de juros mensal para decimal
     decimal_rate = monthly_interest_rate / 100.0
     
