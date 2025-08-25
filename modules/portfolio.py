@@ -1,5 +1,13 @@
 import pandas as pd
 import numpy as np
+from typing import List
+
+
+def _normalize_weights(weights: List[float]) -> np.ndarray:
+    """Normaliza uma lista de pesos para que a soma seja 1."""
+    weights = np.array(weights)
+    return weights / np.sum(weights)
+
 
 def simulate_portfolio(
     price_data,
@@ -7,10 +15,9 @@ def simulate_portfolio(
     monthly_contribution,
     weights
 ):
-    # Normalização dos pesos
-    weights = np.array(weights)
-    weights = weights / np.sum(weights)
-    
+
+    weights = _normalize_weights(weights)
+
     daily_returns = price_data.pct_change()
 
     dates = daily_returns.index
@@ -20,7 +27,7 @@ def simulate_portfolio(
     for i in range(1, len(dates)):
         previous_date = dates[i - 1]
         current_date = dates[i]
-        
+
         previous_value = portfolio_values.iloc[i - 1]
 
         returns_on_current_day = daily_returns.iloc[i]
